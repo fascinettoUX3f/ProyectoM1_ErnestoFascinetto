@@ -9,4 +9,17 @@ function generateRandomHex() {
 
   return color;
 }
-console.log(generateRandomHex());
+
+function generatePalette() {
+  const palette = [];
+
+  for (let i = 0; i < 4; i++) {
+    const newColor = generateRandomHex();
+    palette.push(newColor);
+  }
+
+  return palette;
+}
+
+
+console.log(generatePalette());
