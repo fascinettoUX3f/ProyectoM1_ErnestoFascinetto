@@ -22,4 +22,17 @@ function generatePalette() {
 }
 
 
-console.log(generatePalette());
+function renderPalette() {
+  const palette = generatePalette();
+
+  const colorPreviews = document.querySelectorAll(".color-preview");
+  const colorHexTexts = document.querySelectorAll(".color-hex");
+
+  for (let i = 0; i < palette.length; i++) {
+    colorPreviews[i].style.backgroundColor = palette[i];
+    colorHexTexts[i].textContent = palette[i];
+  }
+}
+
+
+renderPalette();

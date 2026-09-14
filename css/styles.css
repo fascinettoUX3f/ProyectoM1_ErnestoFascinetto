@@ -146,24 +146,6 @@ body {
 }
 
 
-/* Colores temporales del MVP */
-
-.color-card:nth-child(1) .color-preview {
-  background-color: #a3d5ff;
-}
-
-.color-card:nth-child(2) .color-preview {
-  background-color: #ffd6a5;
-}
-
-.color-card:nth-child(3) .color-preview {
-  background-color: #caffbf;
-}
-
-.color-card:nth-child(4) .color-preview {
-  background-color: #bdb2ff;
-}
-
 
 /* =========================
    INFORMACIÓN DEL COLOR
