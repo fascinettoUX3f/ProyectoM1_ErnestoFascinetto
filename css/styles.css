@@ -23,7 +23,7 @@ body {
   min-height: 100vh;
 
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 40px;
 
   padding: 48px;
@@ -101,14 +101,15 @@ body {
 .palette {
   display: flex;
 
-  min-height: 520px;
+  min-height: calc(100vh - 120px);
 
   padding: 20px;
   gap: 12px;
 
-  background-color: #f4f4f4;
+  background-color: #fff;
 
   border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0, .25);
 }
 
 
@@ -170,6 +171,7 @@ body {
 
 .color-info {
   padding: 16px;
+  background-color: #f6f6f6;
 }
 
 .color-hex {
