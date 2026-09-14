@@ -1,3 +1,4 @@
+// Funcion para generar un random hex color
 function generateRandomHex() {
   const characters = "0123456789ABCDEF";
   let color = "#";
@@ -10,6 +11,7 @@ function generateRandomHex() {
   return color;
 }
 
+// Funcion para generar una paleta de 4 colores
 function generatePalette() {
   const palette = [];
 
@@ -21,7 +23,7 @@ function generatePalette() {
   return palette;
 }
 
-
+// Funcion para renderizar la paleta random en DOM
 function renderPalette() {
   const palette = generatePalette();
 
@@ -34,5 +36,9 @@ function renderPalette() {
   }
 }
 
-
 renderPalette();
+
+
+// Boton que genera una nueva paleta aleatoria
+const generatePaletteBtn = document.querySelector("#generatePaletteBtn");
+generatePaletteBtn.addEventListener("click", renderPalette);
