@@ -38,17 +38,31 @@ function renderPalette() {
     const colorPreview = document.createElement("div");
     const colorInfo = document.createElement("div");
     const colorHex = document.createElement("p");
+    const deleteButton = document.createElement("button");
 
     colorCard.classList.add("color-card");
     colorPreview.classList.add("color-preview");
     colorInfo.classList.add("color-info");
     colorHex.classList.add("color-hex");
+    deleteButton.classList.add("delete-color-button");
 
     colorPreview.style.backgroundColor = palette[i];
     colorHex.textContent = palette[i];
 
+    deleteButton.type = "button";
+    deleteButton.textContent = "×";
+    deleteButton.setAttribute("aria-label", "Eliminar color");
+    deleteButton.title = "Eliminar color";
+
+    deleteButton.disabled = palette.length <= 2;
+
+    deleteButton.addEventListener("click", function () {
+      deleteColor(i);
+    });
+
     colorInfo.appendChild(colorHex);
 
+    colorCard.appendChild(deleteButton);
     colorCard.appendChild(colorPreview);
     colorCard.appendChild(colorInfo);
 
@@ -91,9 +105,25 @@ function addColor() {
     palette.push(newColor);
 
     renderPalette();
+    updateAddButton();
   }
 }
 
 // Boton para agregar un nuevo color
 const addColorBtn = document.querySelector("#addColorBtn");
 addColorBtn.addEventListener("click", addColor);
+
+// Disable boton de agregar color
+function updateAddButton() {
+  addColorBtn.disabled = palette.length >= 9;
+}
+
+// Funcion para eliminar un color de la paleta
+function deleteColor(index) {
+  if (palette.length > 2) {
+    palette.splice(index, 1);
+
+    renderPalette();
+    updateAddButton();
+  }
+}

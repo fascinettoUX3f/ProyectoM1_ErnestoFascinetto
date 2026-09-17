@@ -14,6 +14,10 @@ body {
   color: #222222;
 }
 
+article{
+  position:relative;
+}
+
 
 /* =========================
    LAYOUT PRINCIPAL
@@ -127,7 +131,46 @@ body {
   outline-offset: 3px;
 }
 
+.add-color-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.add-color-button:hover:not(:disabled) {
+  background-color: #444444;
+}
 
+
+
+/* =========================
+   HERRAMIENTAS DE COLOR
+========================= */
+
+/* BORRAR */
+.delete-color-button {
+  width: 32px;
+  height: 32px;
+
+  border: none;
+  border-radius: 50%;
+
+  background-color: #eeeeee;
+
+  font-size: 20px;
+
+  cursor: pointer;
+
+  position: absolute;
+  top: 8px; right: 8px;
+}
+
+.delete-color-button:hover:not(:disabled) {
+  background-color: #dddddd;
+}
+
+.delete-color-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
 
 
 
