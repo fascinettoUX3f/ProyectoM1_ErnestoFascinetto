@@ -35,10 +35,26 @@ function renderPalette() {
     colorHexTexts[i].textContent = palette[i];
   }
 }
-
 renderPalette();
 
 
+// Toast notification
+function showToast() {
+  const toast = document.querySelector("#toast");
+
+  toast.classList.add("show");
+
+  setTimeout(function () {
+    toast.classList.remove("show");
+  }, 2500);
+}
+
+// Funcion para generer una nueva paleta y mostrar el toast
+function handleGeneratePalette() {
+  renderPalette();
+  showToast();
+}
+
 // Boton que genera una nueva paleta aleatoria
 const generatePaletteBtn = document.querySelector("#generatePaletteBtn");
-generatePaletteBtn.addEventListener("click", renderPalette);
+generatePaletteBtn.addEventListener("click", handleGeneratePalette);
