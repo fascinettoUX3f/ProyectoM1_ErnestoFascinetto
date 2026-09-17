@@ -1,3 +1,4 @@
+
 // Funcion para generar un random hex color
 function generateRandomHex() {
   const characters = "0123456789ABCDEF";
@@ -7,36 +8,53 @@ function generateRandomHex() {
     const randomPosition = Math.floor(Math.random() * 16);
     color += characters[randomPosition];
   }
-
   return color;
 }
 
+//Creamos un array que almacena la paleta de colores
+let palette = [];
+
 // Funcion para generar una paleta de 4 colores
 function generatePalette() {
-  const palette = [];
+  const paletteSize = palette.length || 4;
 
-  for (let i = 0; i < 4; i++) {
+  palette = [];
+
+  for (let i = 0; i < paletteSize; i++) {
     const newColor = generateRandomHex();
     palette.push(newColor);
   }
-
-  return palette;
 }
+
 
 // Funcion para renderizar la paleta random en DOM
 function renderPalette() {
-  const palette = generatePalette();
+  const paletteContainer = document.querySelector("#palette");
 
-  const colorPreviews = document.querySelectorAll(".color-preview");
-  const colorHexTexts = document.querySelectorAll(".color-hex");
+  paletteContainer.innerHTML = "";
 
   for (let i = 0; i < palette.length; i++) {
-    colorPreviews[i].style.backgroundColor = palette[i];
-    colorHexTexts[i].textContent = palette[i];
+    const colorCard = document.createElement("article");
+    const colorPreview = document.createElement("div");
+    const colorInfo = document.createElement("div");
+    const colorHex = document.createElement("p");
+
+    colorCard.classList.add("color-card");
+    colorPreview.classList.add("color-preview");
+    colorInfo.classList.add("color-info");
+    colorHex.classList.add("color-hex");
+
+    colorPreview.style.backgroundColor = palette[i];
+    colorHex.textContent = palette[i];
+
+    colorInfo.appendChild(colorHex);
+
+    colorCard.appendChild(colorPreview);
+    colorCard.appendChild(colorInfo);
+
+    paletteContainer.appendChild(colorCard);
   }
 }
-renderPalette();
-
 
 // Toast notification
 function showToast() {
@@ -51,6 +69,7 @@ function showToast() {
 
 // Funcion para generer una nueva paleta y mostrar el toast
 function handleGeneratePalette() {
+  generatePalette();
   renderPalette();
   showToast();
 }
@@ -58,3 +77,23 @@ function handleGeneratePalette() {
 // Boton que genera una nueva paleta aleatoria
 const generatePaletteBtn = document.querySelector("#generatePaletteBtn");
 generatePaletteBtn.addEventListener("click", handleGeneratePalette);
+
+// Generamos la paleta random inicial al cargar la pagina
+generatePalette();
+renderPalette();
+
+
+// Funcion para agregar un color nuevo a la paleta
+function addColor() {
+  if (palette.length < 9) {
+    const newColor = generateRandomHex();
+
+    palette.push(newColor);
+
+    renderPalette();
+  }
+}
+
+// Boton para agregar un nuevo color
+const addColorBtn = document.querySelector("#addColorBtn");
+addColorBtn.addEventListener("click", addColor);

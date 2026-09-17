@@ -34,62 +34,21 @@
 
 
     <!-- Panel derecho -->
-    <section
-      class="palette-section"
-      aria-labelledby="palette-title"
-    >
+    <section class="palette-section" aria-labelledby="palette-title">
 
       <h2 id="palette-title" class="sr-only">
         Paleta de colores
       </h2>
 
-      <div
-        id="palette"
-        class="palette"
-        aria-live="polite"
-      >
+      <div class="palette-content">
+        <div id="palette" class="palette" aria-live="polite" >
+        </div>
 
-        <!-- Color 1 -->
-        <article class="color-card">
-          <div class="color-preview"></div>
-
-          <div class="color-info">
-            <p class="color-hex">#A3D5FF</p>
-          </div>
-        </article>
-
-
-        <!-- Color 2 -->
-        <article class="color-card">
-          <div class="color-preview"></div>
-
-          <div class="color-info">
-            <p class="color-hex">#FFD6A5</p>
-          </div>
-        </article>
-
-
-        <!-- Color 3 -->
-        <article class="color-card">
-          <div class="color-preview"></div>
-
-          <div class="color-info">
-            <p class="color-hex">#CAFFBF</p>
-          </div>
-        </article>
-
-
-        <!-- Color 4 -->
-        <article class="color-card">
-          <div class="color-preview"></div>
-
-          <div class="color-info">
-            <p class="color-hex">#BDB2FF</p>
-          </div>
-        </article>
-
+        <button type="button" id="addColorBtn" class="add-color-button" aria-label="Agregar color" title="Agregar color" >
+          +
+        </button>
       </div>
-
+        
     </section>
 
   </main>
