@@ -17,13 +17,23 @@ let palette = [];
 // Funcion para generar una paleta de 4 colores
 function generatePalette() {
   const paletteSize = palette.length || 4;
-
-  palette = [];
+  const newPalette = [];
 
   for (let i = 0; i < paletteSize; i++) {
-    const newColor = generateRandomHex();
-    palette.push(newColor);
+
+    if (palette[i] && palette[i].locked) {
+      newPalette.push(palette[i]);
+    } else {
+      const newColor = {
+        hex: generateRandomHex(),
+        locked: false
+      };
+
+      newPalette.push(newColor);
+    }
   }
+
+  palette = newPalette;
 }
 
 
@@ -39,6 +49,7 @@ function renderPalette() {
     const colorInfo = document.createElement("div");
     const colorHex = document.createElement("p");
     const deleteButton = document.createElement("button");
+    const lockButton = document.createElement("button");
 
     colorCard.classList.add("color-card");
     colorPreview.classList.add("color-preview");
@@ -46,8 +57,8 @@ function renderPalette() {
     colorHex.classList.add("color-hex");
     deleteButton.classList.add("delete-color-button");
 
-    colorPreview.style.backgroundColor = palette[i];
-    colorHex.textContent = palette[i];
+    colorPreview.style.backgroundColor = palette[i].hex;
+    colorHex.textContent = palette[i].hex;
 
     deleteButton.type = "button";
     deleteButton.textContent = "×";
@@ -60,8 +71,29 @@ function renderPalette() {
       deleteColor(i);
     });
 
+    lockButton.classList.add("lock-color-button");
+    lockButton.type = "button";
+    lockButton.textContent = palette[i].locked ? "🔒" : "🔓";
+    lockButton.setAttribute(
+      "aria-label",
+      palette[i].locked ? "Desbloquear color" : "Bloquear color"
+    );
+    lockButton.title = palette[i].locked
+      ? "Desbloquear color"
+      : "Bloquear color";
+
+    lockButton.addEventListener("click", function () {
+      toggleLock(i);
+    });
+
+
     colorInfo.appendChild(colorHex);
 
+    colorCard.appendChild(deleteButton);
+    colorCard.appendChild(colorPreview);
+    colorCard.appendChild(colorInfo);
+
+    colorCard.appendChild(lockButton);
     colorCard.appendChild(deleteButton);
     colorCard.appendChild(colorPreview);
     colorCard.appendChild(colorInfo);
@@ -100,7 +132,10 @@ renderPalette();
 // Funcion para agregar un color nuevo a la paleta
 function addColor() {
   if (palette.length < 9) {
-    const newColor = generateRandomHex();
+    const newColor = {
+      hex: generateRandomHex(),
+      locked: false
+    };
 
     palette.push(newColor);
 
@@ -126,4 +161,11 @@ function deleteColor(index) {
     renderPalette();
     updateAddButton();
   }
+}
+
+//Toggle bloquear color
+function toggleLock(index) {
+  palette[index].locked = !palette[index].locked;
+
+  renderPalette();
 }

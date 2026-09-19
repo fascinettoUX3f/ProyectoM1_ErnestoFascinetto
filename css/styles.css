@@ -172,6 +172,27 @@ article{
   cursor: not-allowed;
 }
 
+/* BLOQUEAR */
+.lock-color-button {
+  width: 32px;
+  height: 32px;
+
+  border: none;
+  border-radius: 50%;
+
+  background-color: #eeeeee;
+
+  cursor: pointer;
+
+  position: absolute;
+  top: 48px; right: 8px;
+}
+
+.lock-color-button:hover {
+  background-color: #dddddd;
+}
+
+
 
 
 /* =========================
