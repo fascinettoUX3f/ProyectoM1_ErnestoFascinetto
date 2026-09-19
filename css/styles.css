@@ -255,6 +255,11 @@ article{
 .color-info {
   padding: 16px;
   background-color: #f6f6f6;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
 }
 
 .color-hex {
@@ -262,6 +267,31 @@ article{
   font-weight: bold;
   text-transform: uppercase;
 }
+
+/* BOTON COPIAR */
+.copy-button {
+  padding: 6px 10px;
+
+  border: none;
+  border-radius: 6px;
+
+  background-color: #e5e5e5;
+
+  font-size: 12px;
+
+  cursor: pointer;
+}
+
+.copy-button:hover {
+  background-color: #d5d5d5;
+}
+
+.copy-button:focus-visible {
+  outline: 3px solid #6c63ff;
+  outline-offset: 2px;
+}
+
+
 
 /* =========================
    TOAST NOTIFICATION

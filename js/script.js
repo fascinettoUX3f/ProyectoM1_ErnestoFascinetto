@@ -50,6 +50,7 @@ function renderPalette() {
     const colorHex = document.createElement("p");
     const deleteButton = document.createElement("button");
     const lockButton = document.createElement("button");
+    const copyHexButton = document.createElement("button");
 
     colorCard.classList.add("color-card");
     colorPreview.classList.add("color-preview");
@@ -86,8 +87,19 @@ function renderPalette() {
       toggleLock(i);
     });
 
+    copyHexButton.classList.add("copy-button");
+    copyHexButton.type = "button";
+    copyHexButton.textContent = "Copiar";
+    copyHexButton.setAttribute("aria-label", `Copiar color ${palette[i].hex}`);
+    copyHexButton.title = "Copiar HEX";
+
+    copyHexButton.addEventListener("click", function () {
+      copyHex(i);
+    });
+
 
     colorInfo.appendChild(colorHex);
+    colorInfo.appendChild(copyHexButton);
 
     colorCard.appendChild(deleteButton);
     colorCard.appendChild(colorPreview);
@@ -103,8 +115,11 @@ function renderPalette() {
 }
 
 // Toast notification
-function showToast() {
+function showToast(message) {
   const toast = document.querySelector("#toast");
+  const toastMessage = document.querySelector("#toastMessage");
+
+  toastMessage.textContent = message;
 
   toast.classList.add("show");
 
@@ -117,7 +132,7 @@ function showToast() {
 function handleGeneratePalette() {
   generatePalette();
   renderPalette();
-  showToast();
+  showToast("¡Nueva paleta generada!");
 }
 
 // Boton que genera una nueva paleta aleatoria
@@ -168,4 +183,13 @@ function toggleLock(index) {
   palette[index].locked = !palette[index].locked;
 
   renderPalette();
+}
+
+// Funcion para copiar Hex
+function copyHex(index) {
+  const hex = palette[index].hex;
+
+  navigator.clipboard.writeText(hex);
+
+  showToast(`HEX ${hex} copiado`);
 }
