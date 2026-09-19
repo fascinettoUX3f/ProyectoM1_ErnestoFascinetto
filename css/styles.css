@@ -257,15 +257,30 @@ article{
   background-color: #f6f6f6;
 
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
   gap: 8px;
 }
 
-.color-hex {
-  font-size: 16px;
+.color-value-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.color-format {
+  width: 32px;
+
+  font-size: 11px;
   font-weight: bold;
-  text-transform: uppercase;
+  color: #666666;
+}
+
+.color-hex,
+.color-rgb,
+.color-hsl {
+  flex: 1;
+
+  font-size: 12px;
 }
 
 /* BOTON COPIAR */
