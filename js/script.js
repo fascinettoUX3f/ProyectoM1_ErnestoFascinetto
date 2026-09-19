@@ -13,6 +13,7 @@ function generateRandomHex() {
 
 //Creamos un array que almacena la paleta de colores
 let palette = [];
+let draggedColorIndex = null;
 
 // Funcion para generar una paleta de 4 colores
 function generatePalette() {
@@ -44,7 +45,7 @@ function renderPalette() {
   paletteContainer.innerHTML = "";
 
   for (let i = 0; i < palette.length; i++) {
-    const colorCard = document.createElement("article");
+    const colorCard = document.createElement("article");colorCard.draggable = true;
     const colorPreview = document.createElement("div");
     const colorInfo = document.createElement("div");
     const colorHex = document.createElement("p");
@@ -175,6 +176,39 @@ function renderPalette() {
     moveIcon.alt = "";
 
     moveButton.appendChild(moveIcon);
+
+    //Funcionalidad Mover 
+    colorCard.draggable = true;
+    colorCard.addEventListener("dragstart", function () {
+      draggedColorIndex = i;
+      console.log("Origen:", draggedColorIndex);
+      colorCard.classList.add("dragging");
+    });
+    colorCard.addEventListener("dragend", function () {
+      colorCard.classList.remove("dragging");
+    });
+
+    colorCard.addEventListener("dragover", function (event) {
+      event.preventDefault();
+    });
+
+    colorCard.addEventListener("drop", function () {
+      if (draggedColorIndex === i) {
+        return;
+      }
+      const movedColor =
+        palette.splice(draggedColorIndex, 1)[0];
+      palette.splice(i, 0, movedColor);
+      console.log("Destino:", i);
+      renderPalette();
+    });
+
+    colorCard.addEventListener("dragend", function () {
+      colorCard.classList.remove("dragging");
+      draggedColorIndex = null;
+    });
+
+    
 
     //Copiar -----------------------------------
 

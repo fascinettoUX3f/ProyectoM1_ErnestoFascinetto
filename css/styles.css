@@ -239,6 +239,14 @@ article{
   overflow: hidden;
 }
 
+/* =========================
+   DRAG TARJETAS
+========================= */
+
+.color-card.dragging {
+  opacity: 0.5;
+}
+
 
 /* =========================
    VISTA DEL COLOR
@@ -322,6 +330,33 @@ article{
   outline-offset: 2px;
 }
 
+/* =========================
+   BOTON EXPORTAR
+========================= 
+.export-button {
+  margin-top: 16px;
+  padding: 10px 16px;
+
+  border: none;
+  border-radius: 8px;
+
+  background-color: #222222;
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+.export-button:hover {
+  background-color: #444444;
+}
+
+.export-button:focus-visible {
+  outline: 3px solid #6c63ff;
+  outline-offset: 3px;
+}*/
 
 
 /* =========================
