@@ -421,3 +421,72 @@ function rgbToHsl(red, green, blue) {
 
   return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
 }
+
+
+// Funcion Preparar datos para exportar paleta de colores
+function createPaletteExport() {
+  const colors = [];
+
+  for (let i = 0; i < palette.length; i++) {
+    const rgb = hexToRgb(palette[i].hex);
+
+    const rgbText =
+      `rgb(${rgb.red}, ${rgb.green}, ${rgb.blue})`;
+
+    const hslText = rgbToHsl(
+      rgb.red,
+      rgb.green,
+      rgb.blue
+    );
+
+    const colorData = {
+      hex: palette[i].hex,
+      rgb: rgbText,
+      hsl: hslText
+    };
+
+    colors.push(colorData);
+  }
+
+  return {
+    name: "Colorfly Palette",
+    colors: colors
+  };
+}
+
+// Funcion Exportar paleta de colores
+function exportPalette() {
+  const exportData = createPaletteExport();
+
+  const jsonData = JSON.stringify(
+    exportData,
+    null,
+    2
+  );
+
+  const blob = new Blob(
+    [jsonData],
+    { type: "application/json" }
+  );
+
+  const url = URL.createObjectURL(blob);
+
+  const downloadLink = document.createElement("a");
+
+  downloadLink.href = url;
+  downloadLink.download = "colorfly-palette.json";
+
+  downloadLink.click();
+
+  showToast("¡Paleta exportada!");
+
+  URL.revokeObjectURL(url);
+}
+
+const exportPaletteBtn =
+  document.querySelector("#exportPaletteBtn");
+
+exportPaletteBtn.addEventListener(
+  "click",
+  exportPalette
+);
