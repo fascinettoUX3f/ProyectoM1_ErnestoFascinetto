@@ -189,7 +189,11 @@ function toggleLock(index) {
 function copyHex(index) {
   const hex = palette[index].hex;
 
-  navigator.clipboard.writeText(hex);
-
-  showToast(`HEX ${hex} copiado`);
+  navigator.clipboard.writeText(hex)
+    .then(function () {
+      showToast(`HEX ${hex} copiado`);
+    })
+    .catch(function () {
+      showToast("No se pudo copiar el color");
+    });
 }
