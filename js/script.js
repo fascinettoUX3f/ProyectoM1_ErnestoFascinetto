@@ -55,7 +55,11 @@ function renderPalette() {
     const copyHexButton = document.createElement("button");
     const copyRgbButton = document.createElement("button");
     const copyHslButton = document.createElement("button");
+    const copyHexIcon = document.createElement("img");
+    const copyRgbIcon = document.createElement("img");
+    const copyHslIcon = document.createElement("img");
 
+    //Convertir colores -----------------------------------
     const hexRow = document.createElement("div");
     const rgbRow = document.createElement("div");
     const hslRow = document.createElement("div");
@@ -84,8 +88,6 @@ function renderPalette() {
     colorInfo.appendChild(rgbRow);
     colorInfo.appendChild(hslRow);
 
-
-
     const rgb = hexToRgb(palette[i].hex);  
     const hsl = rgbToHsl(
       rgb.red,
@@ -110,20 +112,39 @@ function renderPalette() {
     colorRgb.textContent = rgbText;
     colorHsl.textContent = hslText;
 
+    //Herramientas Color -----------------------------------
+    const colorTools = document.createElement("div");
+    colorTools.classList.add("color-tools");
+
+
+    //Borrar -----------------------------------
+    const deleteIcon = document.createElement("img");
+    deleteIcon.src = "imgs/Delete.svg";
+    deleteIcon.alt = "";
     deleteButton.type = "button";
-    deleteButton.textContent = "×";
     deleteButton.setAttribute("aria-label", "Eliminar color");
     deleteButton.title = "Eliminar color";
 
     deleteButton.disabled = palette.length <= 2;
+    
+    deleteButton.appendChild(deleteIcon);
 
     deleteButton.addEventListener("click", function () {
       deleteColor(i);
     });
 
+    //Bloquear -----------------------------------
     lockButton.classList.add("lock-color-button");
     lockButton.type = "button";
-    lockButton.textContent = palette[i].locked ? "🔒" : "🔓";
+
+    const lockIcon = document.createElement("img");
+    lockIcon.src = palette[i].locked
+    ? "imgs/Lock.svg"
+    : "imgs/Unlock.svg";
+    lockIcon.alt = "";
+
+    lockButton.appendChild(lockIcon);
+
     lockButton.setAttribute(
       "aria-label",
       palette[i].locked ? "Desbloquear color" : "Bloquear color"
@@ -136,6 +157,34 @@ function renderPalette() {
       toggleLock(i);
     });
 
+    //Mover -----------------------------------
+    const moveButton = document.createElement("button");
+    const moveIcon = document.createElement("img");
+
+    moveButton.type = "button";
+    moveButton.classList.add("move-color-button");
+
+    moveButton.setAttribute(
+      "aria-label",
+      "Mover color"
+    );
+
+    moveButton.title = "Mover color";
+
+    moveIcon.src = "imgs/Move.svg";
+    moveIcon.alt = "";
+
+    moveButton.appendChild(moveIcon);
+
+    //Copiar -----------------------------------
+
+    copyHexIcon.src = "imgs/Copy.svg";
+    copyRgbIcon.src = "imgs/Copy.svg";
+    copyHslIcon.src = "imgs/Copy.svg";
+
+    copyHexIcon.alt = "";
+    copyRgbIcon.alt = "";
+    copyHslIcon.alt = "";
 
     copyHexButton.classList.add("copy-button");
     copyRgbButton.classList.add("copy-button");
@@ -145,9 +194,9 @@ function renderPalette() {
     copyRgbButton.type = "button";
     copyHslButton.type = "button";
 
-    copyHexButton.textContent = "Copiar";
-    copyRgbButton.textContent = "Copiar";
-    copyHslButton.textContent = "Copiar";
+    //copyHexButton.textContent = "Copiar";
+    //copyRgbButton.textContent = "Copiar";
+    //copyHslButton.textContent = "Copiar";
 
     copyHexButton.setAttribute(
       "aria-label",
@@ -178,14 +227,22 @@ function renderPalette() {
       copyColorValue(hslText, "HSL");
     });
 
+    //Estructura General -----------------------------------
     colorCard.appendChild(deleteButton);
     colorCard.appendChild(colorPreview);
     colorCard.appendChild(colorInfo);
 
-    colorCard.appendChild(lockButton);
-    colorCard.appendChild(deleteButton);
+    colorCard.appendChild(colorTools);
     colorCard.appendChild(colorPreview);
     colorCard.appendChild(colorInfo);
+
+    colorTools.appendChild(moveButton);
+    colorTools.appendChild(lockButton);
+    colorTools.appendChild(deleteButton);
+
+    copyHexButton.appendChild(copyHexIcon);
+    copyRgbButton.appendChild(copyRgbIcon);
+    copyHslButton.appendChild(copyHslIcon);
 
     paletteContainer.appendChild(colorCard);
   }

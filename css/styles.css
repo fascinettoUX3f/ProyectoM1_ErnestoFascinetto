@@ -145,54 +145,60 @@ article{
    HERRAMIENTAS DE COLOR
 ========================= */
 
-/* BORRAR */
+.color-tools {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 4px;
+
+  padding: 8px;
+}
+
+
+
+.move-color-button,
+.lock-color-button,
 .delete-color-button {
   width: 32px;
   height: 32px;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   border: none;
-  border-radius: 50%;
+  border-radius: 6px;
 
   background-color: #eeeeee;
 
-  font-size: 20px;
-
   cursor: pointer;
-
-  position: absolute;
-  top: 8px; right: 8px;
 }
 
+.move-color-button img,
+.lock-color-button img,
+.delete-color-button img {
+  width: 18px;
+  height: 18px;
+}
+
+.move-color-button:hover,
+.lock-color-button:hover,
 .delete-color-button:hover:not(:disabled) {
   background-color: #dddddd;
+}
+
+.move-color-button:focus-visible,
+.lock-color-button:focus-visible,
+.delete-color-button:focus-visible {
+  outline: 3px solid #6c63ff;
+  outline-offset: 2px;
 }
 
 .delete-color-button:disabled {
   opacity: 0.4;
   cursor: not-allowed;
 }
-
-/* BLOQUEAR */
-.lock-color-button {
-  width: 32px;
-  height: 32px;
-
-  border: none;
-  border-radius: 50%;
-
-  background-color: #eeeeee;
-
-  cursor: pointer;
-
-  position: absolute;
-  top: 48px; right: 8px;
-}
-
-.lock-color-button:hover {
-  background-color: #dddddd;
-}
-
-
 
 
 /* =========================
@@ -285,20 +291,30 @@ article{
 
 /* BOTON COPIAR */
 .copy-button {
-  padding: 6px 10px;
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
 
   border: none;
   border-radius: 6px;
 
-  background-color: #e5e5e5;
-
-  font-size: 12px;
+  background-color: transparent;
 
   cursor: pointer;
 }
 
+.copy-button img {
+  width: 16px;
+  height: 16px;
+}
+
 .copy-button:hover {
-  background-color: #d5d5d5;
+  background-color: #e5e5e5;
 }
 
 .copy-button:focus-visible {
