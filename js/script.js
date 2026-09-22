@@ -120,7 +120,7 @@ function renderPalette() {
 
     //Borrar -----------------------------------
     const deleteIcon = document.createElement("img");
-    deleteIcon.src = "imgs/Delete.svg";
+    deleteIcon.src = "imgs/delete.svg";
     deleteIcon.alt = "";
     deleteButton.type = "button";
     deleteButton.setAttribute("aria-label", "Eliminar color");
