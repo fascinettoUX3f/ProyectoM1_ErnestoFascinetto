@@ -12,6 +12,9 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: #ffffff;
   color: #222222;
+  background-image: url(../imgs/bg.jpg);
+  background-size: cover;
+  background-position: bottom left;
 }
 
 article{
@@ -53,7 +56,7 @@ article{
 }
 
 .app-header p {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.5;
   color: #666666;
 }
@@ -65,23 +68,49 @@ article{
 
 .primary-button {
   width: fit-content;
-
   padding: 12px 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 
   border: none;
   border-radius: 8px;
 
-  background-color: #222222;
+  background: linear-gradient(
+    90deg,
+    #7c3aed,
+    #2563eb,
+    #10b981
+  );
+
+  background-size: 200% 100%;
+  background-position: left;
+
   color: #ffffff;
 
   font-size: 16px;
   font-weight: bold;
 
   cursor: pointer;
+
+  transition:
+    background-position 0.4s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .primary-button:hover {
-  background-color: #444444;
+  background-position: right;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+}
+
+.primary-button:active {
+  transform: translateY(0);
 }
 
 .primary-button:focus-visible {
@@ -220,7 +249,7 @@ article{
 
 .palette {
   display: flex;
-  min-height: calc(100vh - 120px);
+  min-height: calc(100vh - 180px);
   padding: 20px;
   gap: 12px;
   background-color: #fff;
@@ -341,13 +370,32 @@ article{
    BOTON EXPORTAR
 ========================= */
 .export-button {
-  margin-top: 16px;
+
+  width: fit-content;
+  padding: 12px 24px;
+  margin-top: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+   align-self: flex-end;
+
   padding: 10px 16px;
 
   border: none;
   border-radius: 8px;
 
-  background-color: #222222;
+  background: linear-gradient(
+    90deg,
+    #dc2626,
+    #f97316,
+    #facc15
+  );
+
+  background-size: 200% 100%;
+  background-position: left;
+
   color: #ffffff;
 
   font-size: 14px;
@@ -355,20 +403,28 @@ article{
 
   cursor: pointer;
 
-  align-self: flex-end;
-  padding: 10px 16px;
-
+  transition:
+    background-position 0.4s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .export-button:hover {
-  background-color: #444444;
+  background-position: right;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+}
+
+.export-button:active {
+  transform: translateY(0);
 }
 
 .export-button:focus-visible {
-  outline: 3px solid #6c63ff;
+  outline: 3px solid #f97316;
   outline-offset: 3px;
 }
-
 
 /* =========================
    TOAST NOTIFICATION
